@@ -1,7 +1,47 @@
 @font-face {
-  font-family: 'Gotham';
-  src: url('@/assets/fonts/Gotham-Medium.woff2') format('woff2');
+  font-family: 'Roboto';
+  src: url('@/assets/fonts/Roboto-Medium') format('woff2');
   font-weight: 500;
+  font-size: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('@/assets/fonts/Roboto-Regular') format('woff2');
+  font-weight: 400;
+  font-size: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('@/assets/fonts/Roboto-Bold') format('woff2');
+  font-weight: 700;
+  font-size: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karla';
+  src: url('@/assets/fonts/Karla-Medium') format('woff2');
+  font-weight: 500;
+  font-size: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karla';
+  src: url('@/assets/fonts/Karla-Regular') format('woff2');
+  font-weight: 400;
+  font-size: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karla';
+  src: url('@/assets/fonts/Karla-Bold') format('woff2');
+  font-weight: 700;
   font-size: normal;
   font-display: swap;
 }
