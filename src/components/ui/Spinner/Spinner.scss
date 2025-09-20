@@ -1,0 +1,11 @@
+.spinner {
+  @include abs-center;
+
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    to {
+      rotate: 360deg;
+    }
+  }
+}
