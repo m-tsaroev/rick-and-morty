@@ -1,5 +1,5 @@
 const Locations = () => {
-  return <div></div>
+  return <div>Locations</div>
 }
 
 export { Locations }

@@ -1,5 +1,7 @@
 const Characters = () => {
-  return <div className='component'></div>
+  return <div className='component'>
+    Characters
+  </div>
 }
 
 export { Characters }

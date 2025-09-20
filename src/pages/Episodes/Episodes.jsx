@@ -1,5 +1,5 @@
 const Episodes = () => {
-  return <div></div>
+  return <div>Episodes</div>
 }
 
 export { Episodes }
