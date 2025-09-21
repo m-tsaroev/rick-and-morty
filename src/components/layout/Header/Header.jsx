@@ -30,7 +30,10 @@ const Header = () => {
     <>
       <header className='header'>
         <div className='header__inner container'>
-          <div className='header__logo'>
+          <div
+            title='Characters'
+            className='header__logo'
+          >
             <Link to='/'>
               <img src={logo} alt='Logo' />
             </Link>
@@ -38,7 +41,12 @@ const Header = () => {
           <nav className='header__menu'>
             <ul className='header__menu-list'>
               {navLinks.map(({ to, label }, index) => (
-                <li className='header__menu-item' key={index}>
+                <li
+                  title={label}
+                  aria-label={`${label}-page`}
+                  className='header__menu-item'
+                  key={index}
+                >
                   <NavLink to={to} className='header__menu-link'>
                     {label}
                   </NavLink>
