@@ -1,7 +1,8 @@
+import classNames from 'classnames'
 import './Search.scss'
 
 const Search = (props) => {
-  const { placeholder } = props
+  const { placeholder, value, onChange, className } = props
 
   return (
     <label htmlFor='search' className='search'>
@@ -23,8 +24,10 @@ const Search = (props) => {
       <input
         id='search'
         type='search'
-        className='search__field'
+        className={classNames('search__field', className)}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
       />
     </label>
   )

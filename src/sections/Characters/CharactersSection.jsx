@@ -2,13 +2,33 @@ import { Search } from '@/components/ui/Search'
 import './CharactersSection.scss'
 import logo from '@/assets/images/logo.png'
 import { useGetCharactersQuery } from '@/services/mainApiSlice/mainApiSlice'
+import { useEffect, useState } from 'react'
+import { useDebounce } from '@/hooks/useDebounce'
 
 const CharactersSection = () => {
   const titleId = 'characters-page'
 
-  const { data, isLoading } = useGetCharactersQuery(2)
+  const { data, isLoading } = useGetCharactersQuery()
 
-  console.log(data)
+  const [characters, setCharacters] = useState([])
+  const [searchValue, setSearchValue] = useState('')
+
+  const debouncedSearchValue = useDebounce(searchValue)
+
+  const onSearchChange = (event) => {
+    setSearchValue(event.target.value)
+  }
+
+  useEffect(() => {
+    setCharacters(
+      data?.results?.filter(({ name }) => {
+        return name
+          .trim()
+          .toLowerCase()
+          .includes(debouncedSearchValue.trim().toLowerCase())
+      })
+    )
+  }, [data, debouncedSearchValue])
 
   return (
     <section
@@ -24,9 +44,17 @@ const CharactersSection = () => {
         </div>
         <div className='characters__body'>
           <header className='characters__header'>
-            <Search placeholder='Search...' />
+            <Search
+              placeholder='Search...'
+              value={searchValue}
+              onChange={onSearchChange}
+            />
           </header>
-          <ul className='characters__list'></ul>
+          <ul className='characters__list'>
+            {characters?.map((char) => (
+              <p>{char.name}</p>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
