@@ -5,14 +5,17 @@ import { useGetCharactersQuery } from '@/services/mainApiSlice/mainApiSlice'
 import { useEffect, useState } from 'react'
 import { useDebounce } from '@/hooks/useDebounce'
 import { CharacterCard } from '@/components/ui/CharacterCard'
+import { Spinner } from '@/components/ui/Spinner'
+import { LoadButton } from '@/components/ui/LoadButton'
 
 const CharactersSection = () => {
   const titleId = 'characters-page'
 
-  const { data, isLoading } = useGetCharactersQuery()
+  const { data, isLoading } = useGetCharactersQuery(2)
 
   const [characters, setCharacters] = useState([])
   const [searchValue, setSearchValue] = useState('')
+  const [showedCardsCount, setShowedCardsCount] = useState(11)
 
   const debouncedSearchValue = useDebounce(searchValue)
 
@@ -20,16 +23,23 @@ const CharactersSection = () => {
     setSearchValue(event.target.value)
   }
 
+  const onLoadButtonClick = () => {
+    setShowedCardsCount((prevShowedCardsCount) => prevShowedCardsCount + 8)
+  }
+
   useEffect(() => {
     setCharacters(
-      data?.results?.filter(({ name }) => {
-        return name
-          .trim()
-          .toLowerCase()
-          .includes(debouncedSearchValue.trim().toLowerCase())
+      data?.results?.filter(({ name }, index) => {
+        return (
+          index <= showedCardsCount &&
+          name
+            .trim()
+            .toLowerCase()
+            .includes(debouncedSearchValue.trim().toLowerCase())
+        )
       })
     )
-  }, [data, debouncedSearchValue])
+  }, [data, debouncedSearchValue, showedCardsCount])
 
   return (
     <section
@@ -49,13 +59,27 @@ const CharactersSection = () => {
               placeholder='Search...'
               value={searchValue}
               onChange={onSearchChange}
+              className='characters__search'
             />
           </header>
-          <ul className='characters__list'>
-            {characters?.map((char) => (
-              <CharacterCard {...char} key={char.name} />
-            ))}
-          </ul>
+          <div className='characters__cards'>
+            <ul className='characters__list'>
+              {isLoading ? (
+                <Spinner />
+              ) : (
+                characters?.map((char) => (
+                  <CharacterCard
+                    {...char}
+                    key={char.id}
+                    className='characters__cards-item'
+                  />
+                ))
+              )}
+            </ul>
+            {showedCardsCount < 19 && (
+              <LoadButton className='characters__load-button' onClick={onLoadButtonClick} />
+            )}
+          </div>
         </div>
       </div>
     </section>

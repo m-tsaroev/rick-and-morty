@@ -5,7 +5,7 @@ const Search = (props) => {
   const { placeholder, value, onChange, className } = props
 
   return (
-    <label htmlFor='search' className='search'>
+    <label htmlFor='search' className={classNames('search', className)}>
       <div className='search__icon'>
         <svg
           xmlns='http://www.w3.org/2000/svg'

@@ -4,13 +4,17 @@ import { Link } from 'react-router-dom'
 import { PATHS } from '@/config/paths'
 
 const CharacterCard = (props) => {
-  const { id, name, species, image, className } = props
+  const { id, name, species, image, className, width } = props
 
   return (
     <Link
       to={`${PATHS.CHARACTERS}/${id}`}
       id={id}
       className={classNames('character-card', className)}
+
+      style={{
+        width: `${width}px`
+      }}
     >
       <div className='character-card__image'>
         <img src={image} alt={name} width={240} height={224} />
