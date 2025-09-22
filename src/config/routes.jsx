@@ -15,34 +15,26 @@ const mainRoutes = [
   {
     path: PATHS.CHARACTERS,
     element: <Characters />,
-    children: [
-      {
-        path: PATHS.CHARACTER_ID,
-        element: <Character />,
-      },
-    ],
   },
-
+  {
+    path: PATHS.CHARACTER_ID,
+    element: <Character />,
+  },
   {
     path: PATHS.LOCATIONS,
     element: <Locations />,
-    children: [
-      {
-        path: PATHS.LOCATION_ID,
-        element: <Location />,
-      },
-    ],
   },
-
+  {
+    path: PATHS.LOCATION_ID,
+    element: <Location />,
+  },
   {
     path: PATHS.EPISODES,
     element: <Episodes />,
-    children: [
-      {
-        path: PATHS.EPISODE_ID,
-        element: <Episode />,
-      },
-    ],
+  },
+  {
+    path: PATHS.EPISODE_ID,
+    element: <Episode />,
   },
 ]
 

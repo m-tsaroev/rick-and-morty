@@ -5,4 +5,22 @@
     align-items: center;
     row-gap: 16px;
   }
+
+  &__body {
+    display: grid;
+    row-gap: 60px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 24px;
+    column-gap: 20px;
+  }
 }

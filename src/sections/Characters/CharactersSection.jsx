@@ -4,6 +4,7 @@ import logo from '@/assets/images/logo.png'
 import { useGetCharactersQuery } from '@/services/mainApiSlice/mainApiSlice'
 import { useEffect, useState } from 'react'
 import { useDebounce } from '@/hooks/useDebounce'
+import { CharacterCard } from '@/components/ui/CharacterCard'
 
 const CharactersSection = () => {
   const titleId = 'characters-page'
@@ -52,7 +53,7 @@ const CharactersSection = () => {
           </header>
           <ul className='characters__list'>
             {characters?.map((char) => (
-              <p>{char.name}</p>
+              <CharacterCard {...char} key={char.name} />
             ))}
           </ul>
         </div>

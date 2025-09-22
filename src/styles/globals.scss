@@ -30,14 +30,14 @@ h1,
 
 h2,
 .h2 {
+  @include fluid-text(36, 20);
   font-weight: 700;
 }
 
 h3,
 .h3 {
-  @include fluid-text(36, 20);
-
-  font-weight: 700;
+  font-size: 20px;  
+  font-weight: 500;
 }
 
 a,
