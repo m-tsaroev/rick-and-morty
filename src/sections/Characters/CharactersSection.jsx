@@ -11,7 +11,7 @@ import { LoadButton } from '@/components/ui/LoadButton'
 const CharactersSection = () => {
   const titleId = 'characters-page'
 
-  const { data, isLoading } = useGetCharactersQuery(2)
+  const { data, isLoading } = useGetCharactersQuery(1)
 
   const [characters, setCharacters] = useState([])
   const [searchValue, setSearchValue] = useState('')
