@@ -44,6 +44,12 @@
         transition-duration: var(--transition-duration);
       }
 
+      @include hover {
+        &::before {
+          width: 100%;
+        }
+      }
+
       &.active {
         &::before {
           width: 100%;

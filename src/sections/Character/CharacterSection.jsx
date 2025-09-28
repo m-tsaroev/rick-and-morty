@@ -8,6 +8,7 @@ import { PATHS } from '@/config/paths'
 import noImage from '@/assets/images/no-image.jpg'
 import { InformationRow } from '@/components/ui/InformationRow'
 import { useEffect, useState } from 'react'
+import { GoBackButton } from '@/components/ui/GoBackButton'
 
 const CharacterSection = () => {
   const titleId = 'character-page'
@@ -39,6 +40,7 @@ const CharacterSection = () => {
   return (
     <section className='character-section character' aria-labelledby={titleId}>
       <div className='character__inner container'>
+        <GoBackButton />
         <div className='character__head'>
           <div className='character__avatar'>
             <img src={data?.image ? data.image : noImage} alt='' width={300} />

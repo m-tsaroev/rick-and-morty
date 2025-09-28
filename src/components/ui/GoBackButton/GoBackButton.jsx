@@ -1,0 +1,31 @@
+import { useNavigate } from 'react-router-dom'
+import './GoBackButton.scss'
+
+const GoBackButton = (props) => {
+  const navigate = useNavigate()
+
+  const onBackButtonClick = () => {
+    navigate(-1)
+  }
+
+  return (
+    <button type='button' className='back-button' onClick={onBackButtonClick}>
+      <span className='back-button__arrow'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width={24}
+          height={24}
+          fill='none'
+        >
+          <path
+            fill='#000'
+            d='M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2Z'
+          />
+        </svg>
+      </span>
+      <span className='back-button__text'>go back</span>
+    </button>
+  )
+}
+
+export { GoBackButton }
