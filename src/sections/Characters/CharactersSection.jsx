@@ -44,16 +44,11 @@ const CharactersSection = () => {
       titleId={titleId}
       className='characters'
       logo={logo}
-      searchSettings={{
-        searchPlaceholder: 'Filter by name...',
-        searchValue,
-        searchChangeFunction: onSearchChange,
-      }}
+      data={data}
+      searchPlaceholder='Filter by name...'
       isLoading={isLoading}
-      sectionCardsList={characters}
       SectionCardComponent={CharacterCard}
-      showedCardsCount={showedCardsCount}
-      onLoadButtonClick={onLoadButtonClick}
+      initialShowedCardsCount={11}
     />
   )
 }

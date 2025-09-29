@@ -3,29 +3,54 @@ import './Section.scss'
 import { Search } from '../Search'
 import { Spinner } from '../Spinner'
 import { LoadButton } from '../LoadButton'
+import { useEffect, useState } from 'react'
+import { useDebounce } from '@/hooks/useDebounce'
 
 const Section = (props) => {
   const {
     titleId,
     className,
     logo,
-
-    // searchSetting = {
-    //   searchPlaceholder: string,
-    //   searchValue: string,
-    //   searchChangeFunction: function()
-    // }
-
-    searchSettings,
+    data,
+    searchPlaceholder,
     isLoading,
-    sectionCardsList,
     SectionCardComponent,
-    showedCardsCount,
-    onLoadButtonClick,
+
+    // sectionCardComponentModes = {} | object
+
+    sectionCardComponentModes,
+    initialShowedCardsCount,
   } = props
 
-  const { searchPlaceholder, searchValue, searchChangeFunction } =
-    searchSettings
+  const [sectionsCardList, setSectionsCardList] = useState([])
+  const [searchValue, setSearchValue] = useState('')
+  const [showedCardsCount, setShowedCardsCount] = useState(
+    initialShowedCardsCount
+  )
+
+  const debouncedSearchValue = useDebounce(searchValue)
+
+  const onSearchChange = (event) => {
+    setSearchValue(event.target.value)
+  }
+
+  const onLoadButtonClick = () => {
+    setShowedCardsCount((prevShowedCardsCount) => prevShowedCardsCount + 8)
+  }
+
+  useEffect(() => {
+    setSectionsCardList(
+      data?.results?.filter(({ name }, index) => {
+        return (
+          index <= showedCardsCount &&
+          name
+            .trim()
+            .toLowerCase()
+            .includes(debouncedSearchValue.trim().toLowerCase())
+        )
+      })
+    )
+  }, [data, debouncedSearchValue, showedCardsCount])
 
   return (
     <section
@@ -44,7 +69,7 @@ const Section = (props) => {
             <Search
               placeholder={searchPlaceholder}
               value={searchValue}
-              onChange={searchChangeFunction}
+              onChange={onSearchChange}
               className='section__search'
             />
           </header>
@@ -53,9 +78,12 @@ const Section = (props) => {
               {isLoading ? (
                 <Spinner />
               ) : (
-                sectionCardsList?.map((card) => (
+                sectionsCardList?.map((card) => (
                   <li className='section__cards-item' key={card.id}>
-                    <SectionCardComponent {...card} />
+                    <SectionCardComponent
+                      {...sectionCardComponentModes}
+                      {...card}
+                    />
                   </li>
                 ))
               )}

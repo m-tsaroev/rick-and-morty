@@ -24,6 +24,16 @@ const mainApiSlice = apiSlice.injectEndpoints({
       providesTags: ['Episode'],
     }),
 
+    // Locations
+
+    getLocations: builder.query({
+      query: (page = 1) => `/location/?page=${page}`,
+      providesTags: ['Location'],
+    }),
+    getLocationsById: builder.query({
+      query: (locationId) => `/location/${locationId}`,
+      providesTags: ['Location'],
+    }),
   }),
 })
 
@@ -31,5 +41,7 @@ export const {
   useGetCharactersQuery,
   useGetCharacterByIdQuery,
   useGetEpisodesQuery,
-  useGetEpisodesByIdQuery
+  useGetEpisodesByIdQuery,
+  useGetLocationsQuery,
+  useGetLocationsByIdQuery,
 } = mainApiSlice

@@ -6,6 +6,8 @@
   border: 1px solid var(--color-gray);
   border-radius: 8px;
   cursor: text;
+  width: 100%;
+  max-width: 325px;
 
   &:focus-within {
     border-color: var(--color-dark);
