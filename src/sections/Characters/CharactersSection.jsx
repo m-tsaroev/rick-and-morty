@@ -56,7 +56,7 @@ const CharactersSection = () => {
         <div className='characters__body'>
           <header className='characters__header'>
             <Search
-              placeholder='Search...'
+              placeholder='Filter by name...'
               value={searchValue}
               onChange={onSearchChange}
               className='characters__search'
