@@ -18,15 +18,7 @@ body {
 
 main {
   flex: 1;
-}
-
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3 {
-  color: var(--color-blue-02);
+  padding-top: 30px;
 }
 
 h1,
@@ -38,13 +30,19 @@ h1,
 
 h2,
 .h2 {
+  @include fluid-text(36, 20);
   font-weight: 700;
 }
 
 h3,
 .h3 {
-  @include fluid-text(36, 20);
+  font-size: 20px;  
+  font-weight: 500;
+}
 
+h4,
+.h4 {
+  font-size: 16px;
   font-weight: 700;
 }
 

@@ -1,0 +1,56 @@
+.character {
+  &__inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 16px;
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    @include mobile {
+      padding-top: 40px;
+    }
+  }
+
+  &__name {
+    font-family: var(--font-family-alt);
+    font-weight: 400;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    outline: 5px solid var(--color-gray-06);
+    overflow: hidden;
+    width: fluid(300, 148);
+    position: relative;
+  }
+
+  &__body {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      row-gap: 52px;
+    }
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    row-gap: 36px;
+
+    &-title {
+      color: var(--color-gray-01);
+      font-family: var(--font-family-alt);
+    }
+  }
+}

@@ -2,8 +2,19 @@
   --color-light: #ffffff;
 
   --color-dark: #000000;
-
+  
+  --color-black-medium: #00000060;
+  
   --color-light-gray: #dadada;
+  --color-gray: #00000050;
+  --color-gray-08op: #21212108;
+  --color-gray-01: #8E8E93;
+  --color-gray-06: #F2F2F7;
+
+  --color-primary: #2196F3;
+  --color-light-primary: #F2F9FE;
+
+  --color-light-blue: #6E798C;
 
   --font-family-base: 'Karla', sans-serif;
   --font-family-alt: 'Roboto', sans-serif;
@@ -12,7 +23,7 @@
   --transition-duration-long: 0.4s;
 
   --container-width: 1020px;
-  --container-padding-x: 16px;
+  --container-padding-x: 24px;
 
   --border-line: 2px solid;
 }

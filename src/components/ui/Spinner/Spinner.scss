@@ -1,7 +1,12 @@
 .spinner {
   @include abs-center;
+  @include square(200px);
 
   animation: spin 1s linear infinite;
+
+  @include mobile {
+    @include square(150px);
+  }
 
   @keyframes spin {
     to {

@@ -1,5 +1,7 @@
+import { CharacterSection } from '@/sections/Character'
+
 const Character = () => {
-  return <div></div>
+  return <CharacterSection />
 }
 
 export { Character }

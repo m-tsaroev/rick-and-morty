@@ -1,0 +1,61 @@
+.characters {
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 16px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 60px;
+  }
+
+  &__header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+  }
+
+  &__search {
+    @include mobile {
+      width: 100%;
+    }
+  }
+
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-item {
+      @include hover {
+        scale: 1.05;
+      }
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 24px;
+    column-gap: 20px;
+    position: relative;
+    padding-bottom: fluid(48, 32);
+
+    @include laptop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile-s {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}

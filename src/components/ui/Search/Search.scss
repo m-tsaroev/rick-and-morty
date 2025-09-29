@@ -1,0 +1,30 @@
+.search {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  column-gap: 8px;
+  border: 1px solid var(--color-gray);
+  border-radius: 8px;
+  cursor: text;
+
+  &:focus-within {
+    border-color: var(--color-dark);
+  }
+
+  &__field {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    font-family: var(--font-family-alt);
+    
+    &:active .search {
+      border-color: var(--color-dark);
+    }
+  }
+
+  &__icon {
+    @include flex-center;
+  }
+}
