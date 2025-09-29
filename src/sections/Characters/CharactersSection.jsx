@@ -1,12 +1,10 @@
-import { Search } from '@/components/ui/Search'
 import './CharactersSection.scss'
 import logo from '@/assets/images/logo.png'
 import { useGetCharactersQuery } from '@/services/mainApiSlice/mainApiSlice'
 import { useEffect, useState } from 'react'
 import { useDebounce } from '@/hooks/useDebounce'
 import { CharacterCard } from '@/components/ui/CharacterCard'
-import { Spinner } from '@/components/ui/Spinner'
-import { LoadButton } from '@/components/ui/LoadButton'
+import { Section } from '@/components/ui/Section'
 
 const CharactersSection = () => {
   const titleId = 'characters-page'
@@ -42,47 +40,21 @@ const CharactersSection = () => {
   }, [data, debouncedSearchValue, showedCardsCount])
 
   return (
-    <section
-      className='characters-section characters'
-      aria-labelledby={titleId}
-    >
-      <h1 id={titleId} className='visually-hidden'>
-        {titleId}
-      </h1>
-      <div className='characters__inner container'>
-        <div className='characters__logo'>
-          <img src={logo} alt='logo' />
-        </div>
-        <div className='characters__body'>
-          <header className='characters__header'>
-            <Search
-              placeholder='Filter by name...'
-              value={searchValue}
-              onChange={onSearchChange}
-              className='characters__search'
-            />
-          </header>
-          <div className='characters__cards'>
-            <ul className='characters__list'>
-              {isLoading ? (
-                <Spinner />
-              ) : (
-                characters?.map((char) => (
-                  <CharacterCard
-                    {...char}
-                    key={char.id}
-                    className='characters__cards-item'
-                  />
-                ))
-              )}
-            </ul>
-            {showedCardsCount < 19 && (
-              <LoadButton className='characters__load-button' onClick={onLoadButtonClick} />
-            )}
-          </div>
-        </div>
-      </div>
-    </section>
+    <Section
+      titleId={titleId}
+      className='characters'
+      logo={logo}
+      searchSettings={{
+        searchPlaceholder: 'Filter by name...',
+        searchValue,
+        searchChangeFunction: onSearchChange,
+      }}
+      isLoading={isLoading}
+      sectionCardsList={characters}
+      SectionCardComponent={CharacterCard}
+      showedCardsCount={showedCardsCount}
+      onLoadButtonClick={onLoadButtonClick}
+    />
   )
 }
 

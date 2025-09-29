@@ -32,6 +32,8 @@
     align-items: center;
 
     &-item {
+      transition-duration: var(--transition-duration);
+
       @include hover {
         scale: 1.05;
       }
