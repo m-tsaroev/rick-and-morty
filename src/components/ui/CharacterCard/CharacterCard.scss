@@ -24,6 +24,10 @@
 
   &__name {
     font-family: var(--font-family-alt);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
   }
 
   &__specias {

@@ -1,5 +1,10 @@
+import { EposideSection } from '@/sections/Eposide'
+import { useParams } from 'react-router-dom'
+
 const Episode = () => {
-  return <div></div>
+  const { id } = useParams()
+
+  return <EposideSection id={id} />
 }
 
 export { Episode }

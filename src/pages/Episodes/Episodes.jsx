@@ -1,5 +1,7 @@
+import { EpisodesSection } from "@/sections/Episodes"
+
 const Episodes = () => {
-  return <div>Episodes</div>
+  return <EpisodesSection />
 }
 
 export { Episodes }
