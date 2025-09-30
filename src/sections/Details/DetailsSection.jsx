@@ -1,32 +1,43 @@
 import classNames from 'classnames'
 import './DetailsSection.scss'
 import { GoBackButton } from '@/components/ui/GoBackButton'
-import {
-  useGetCharacterByIdQuery,
-  useGetLocationsByIdQuery,
-} from '@/services/mainApiSlice/mainApiSlice'
+import { useGetCharacterByIdQuery } from '@/services/mainApiSlice/mainApiSlice'
 import { Spinner } from '@/components/ui/Spinner'
 import { CharacterCard } from '@/components/ui/CharacterCard'
 import { useEffect, useState } from 'react'
 
 const DetailsSection = (props) => {
-  const { id, className, titleId } = props
+  const { className, titleId, data, isLoading } = props
 
-  const [residentsList, setResidentsList] = useState([])
+  const [charactersList, setCharactersList] = useState([])
+  const [isResidents, setIsResidents] = useState(true)
 
-  const { data, isLoading } = useGetLocationsByIdQuery(id)
-  const { data: residents, isLoading: isResidentsLoading } =
+  const { data: characters, isLoading: isCharactersLoading } =
     useGetCharacterByIdQuery(
-      data?.residents.map((resident) => {
-        return parseInt(resident.match(/\d+/g))
-      }) || []
+      data?.residents
+        ? data?.residents.map((resident) => {
+            return parseInt(resident.match(/\d+/g))
+          })
+        : data?.characters
+        ? data?.characters.map((character) => {
+            return parseInt(character.match(/\d+/g))
+          })
+        : []
     )
 
   useEffect(() => {
-    setResidentsList(
-      Array.isArray(residents) ? residents : residents?.id ? [residents] : []
+    if (data?.characters) {
+      setIsResidents(false)
+    }
+
+    setCharactersList(
+      Array.isArray(characters)
+        ? characters
+        : characters?.id
+        ? [characters]
+        : []
     )
-  }, [residents])
+  }, [characters, data])
 
   return (
     <section
@@ -66,20 +77,38 @@ const DetailsSection = (props) => {
                   </div>
                 </div>
               )}
+              {data?.episode && (
+                <div className='details__head-info__group'>
+                  <div className='details__head-info__group-name'>Episode</div>
+                  <div className='details__head-info__group-value'>
+                    {data.episode}
+                  </div>
+                </div>
+              )}
+              {data?.air_date && (
+                <div className='details__head-info__group'>
+                  <div className='details__head-info__group-name'>Date</div>
+                  <div className='details__head-info__group-value'>
+                    {data.air_date}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}
 
         <div className='details__body'>
           <div className='details__cards'>
-            {residents && (
+            {charactersList && (
               <>
-                <h2 className='details__cards-title h3'>Residents</h2>
+                <h2 className='details__cards-title h3'>
+                  {isResidents ? 'Residents' : 'Cast'}
+                </h2>
                 <ul className='details__cards-list'>
-                  {isResidentsLoading ? (
+                  {isCharactersLoading ? (
                     <Spinner />
-                  ) : residentsList.length > 0 ? (
-                    residentsList?.map((resident) => (
+                  ) : charactersList.length > 0 ? (
+                    charactersList?.map((resident) => (
                       <li className='details__cards-item' key={resident.id}>
                         <CharacterCard {...resident} />
                       </li>

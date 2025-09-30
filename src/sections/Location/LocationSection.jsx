@@ -1,3 +1,4 @@
+import { useGetLocationsByIdQuery } from '@/services/mainApiSlice/mainApiSlice'
 import { DetailsSection } from '../Details'
 import './LocationSection.scss'
 
@@ -6,7 +7,16 @@ const LocationSection = (props) => {
 
   const titleId = 'location-page'
 
-  return <DetailsSection id={id} titleId={titleId} className='location' />
+  const { data, isLoading } = useGetLocationsByIdQuery(id)
+
+  return (
+    <DetailsSection
+      titleId={titleId}
+      className='location'
+      data={data}
+      isLoading={isLoading}
+    />
+  )
 }
 
 export { LocationSection }
