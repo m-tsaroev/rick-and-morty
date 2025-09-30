@@ -1,5 +1,7 @@
+import { LocationsSection } from '@/sections/Locations'
+
 const Locations = () => {
-  return <div>Locations</div>
+  return <LocationsSection />
 }
 
 export { Locations }
